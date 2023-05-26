@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AuthService/RecipeProject.AuthService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AuthService/RecipeProject.AuthService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CommentService/RecipeProject.CommentService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/CommentService/RecipeProject.CommentService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConfigServer/RecipeProject.ConfigServer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ConfigServer/RecipeProject.ConfigServer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MailService/RecipeProject.MailService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MailService/RecipeProject.MailService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RecipeService/RecipeProject.RecipeService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RecipeService/RecipeProject.RecipeService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UserProfileService/RecipeProject.UserProfileService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/UserProfileService/RecipeProject.UserProfileService.main.iml" />
+    </modules>
+  </component>
+</project>
