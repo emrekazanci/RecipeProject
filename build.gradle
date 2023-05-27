@@ -44,7 +44,7 @@ allprojects {
         implementation libs.springCloudOpenFeign
         implementation libs.springCloudZipkin
         implementation libs.javaJWT
-
+        implementation libs.springBootDataRedis
     }
 }
 configurations {

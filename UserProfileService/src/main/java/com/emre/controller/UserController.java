@@ -68,9 +68,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserIdAndUserNameWithAuthId(authId));
     }
 
-    @GetMapping("/get-user-with-fav-category")
+    @GetMapping("/get-user-with-fav-category/{categoryId}")
     @Hidden
-    public ResponseEntity<Set<GetUserForFavCategory>> getUserWithFavCategory( List<String> categoryId) {
+    public ResponseEntity<Set<GetUserForFavCategory>> getUserWithFavCategory(@PathVariable List<String> categoryId) {
         return ResponseEntity.ok(userService.getUserWithFavCategory(categoryId));
     }
 }

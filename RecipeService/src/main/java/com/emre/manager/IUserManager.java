@@ -11,6 +11,6 @@ import java.util.Set;
 
 @FeignClient(url = "http://localhost:8090/api/v1/user",name = "recipe-userprofile")
 public interface IUserManager {
-    @GetMapping("/get-user-with-fav-category")
-    ResponseEntity<Set<GetUserForFavCategory>> getUserWithFavCategory( List<String> categoryId);
+    @GetMapping("/get-user-with-fav-category/{categoryId}")
+    ResponseEntity<Set<GetUserForFavCategory>> getUserWithFavCategory(@PathVariable List<String> categoryId);
 }

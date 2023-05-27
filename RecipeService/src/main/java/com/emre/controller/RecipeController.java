@@ -7,6 +7,7 @@ import com.emre.dto.response.GetRecipeIdAndCategoryIdResponseDto;
 import com.emre.repository.entity.Recipe;
 import com.emre.service.RecipeService;
 import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class RecipeController {
     }
 
     @PostMapping(SEARCH_RECIPE_WITH_CATEGORY)
+    @Operation(summary = "Kategori id girerek arama yapınız.")
     public ResponseEntity<List<Recipe>> getRecipeWithCategory(@RequestBody List<String> categoryIds) {
         return ResponseEntity.ok(recipeService.searchRecipeWithCategory(categoryIds));
     }

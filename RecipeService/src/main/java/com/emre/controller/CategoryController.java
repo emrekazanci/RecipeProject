@@ -17,8 +17,8 @@ import static com.emre.constant.EndPoints.*;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @PostMapping(CATEGORY_SAVE + "/{token}")
-    public ResponseEntity<String> saveCategory(@PathVariable String token, @Valid String categoryName) {
+    @PostMapping(CATEGORY_SAVE + "/{token}/{categoryName}")
+    public ResponseEntity<String> saveCategory(@PathVariable String token,@PathVariable @Valid String categoryName) {
         return ResponseEntity.ok(categoryService.saveCategory(token, categoryName));
     }
 

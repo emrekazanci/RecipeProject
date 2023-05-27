@@ -18,6 +18,10 @@ import com.emre.repository.entity.ERole;
 import com.emre.repository.entity.Recipe;
 import com.emre.utility.JwtTokenProvider;
 import com.emre.utility.ServiceManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -49,6 +53,15 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         this.favCategoriesMailProducer = favCategoriesMailProducer;
     }
 
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true)
+            },
+            put = {
+                    @CachePut(value = "search-with-food-name", key = "#dto.getFoodName().toLowerCase()"),
+                    @CachePut(value = "search-with-category", key = "#dto.getCategory()")
+            }
+    )
     public Recipe saveRecipe(String token, SaveRecipeRequestDto dto) {
         Optional<String> role = jwtTokenProvider.getRoleFromToken(token);
         Recipe recipe = IRecipeMapper.INSTANCE.saveFromSaveRecipeDtoToRecipe(dto);
@@ -76,6 +89,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         return recipe;
     }
 
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Recipe updateRecipe(String token, UpdateRecipeRequestDto dto) {
         Optional<String> role = jwtTokenProvider.getRoleFromToken(token);
         Optional<Recipe> recipe = recipeRepository.findById(dto.getRecipeId());
@@ -87,7 +107,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         }
         return recipe.get();
     }
-
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Boolean deleteRecipe(String token, String recipeId) {
         Optional<String> role = jwtTokenProvider.getRoleFromToken(token);
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
@@ -100,7 +126,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
             throw new RecipeManagerException(ErrorType.USER_NOT_ADD_DELETE_UPDATE);
         }
     }
-
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Boolean sendCommentId(String commentId, String recipeId) {
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
         if (recipe.isEmpty()) throw new RecipeManagerException(ErrorType.RECIPE_NOT_FOUND);
@@ -114,7 +146,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         if (recipe.isEmpty()) throw new RecipeManagerException(ErrorType.RECIPE_NOT_FOUND);
         return recipe.get().getRecipeId();
     }
-
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Boolean deleteCommentInRecipeForDeletedComment(String recipeId, String commentId) {
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
         if (recipe.isEmpty()) throw new RecipeManagerException(ErrorType.RECIPE_NOT_FOUND);
@@ -122,7 +160,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         update(recipe.get());
         return true;
     }
-
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Boolean sendPointId(String pointId, String recipeId) {
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
         if (recipe.isEmpty()) throw new RecipeManagerException(ErrorType.RECIPE_NOT_FOUND);
@@ -130,7 +174,13 @@ public class RecipeService extends ServiceManager<Recipe, String> {
         update(recipe.get());
         return true;
     }
-
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "order-by-calories", allEntries = true),
+                    @CacheEvict(value = "search-with-food-name", allEntries = true),
+                    @CacheEvict(value = "search-with-category", allEntries = true)
+            }
+    )
     public Boolean deletePointInRecipeForDeletedPoint(String pointId, String recipeId) {
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
         if (recipe.isEmpty()) throw new RecipeManagerException(ErrorType.RECIPE_NOT_FOUND);
@@ -147,6 +197,7 @@ public class RecipeService extends ServiceManager<Recipe, String> {
     }
 
     //Kategorilerine göre
+    @Cacheable(value = "search-with-category", key = "#categoryIds")
     public List<Recipe> searchRecipeWithCategory(List<String> categoryIds) {
         List<Recipe> recipeList = recipeRepository.findAll();
         Set<Recipe> newList = new HashSet<>();
@@ -165,6 +216,7 @@ public class RecipeService extends ServiceManager<Recipe, String> {
     }
 
     //Yemek isimlerine göre
+    @Cacheable(value = "search-with-food-name", key = "#foodName.toLowerCase()")
     public List<Recipe> searchRecipeWithFoodName(String foodName) {
         List<Recipe> recipeList = recipeRepository.findByFoodNameContainsIgnoreCase(foodName);
         if (foodName.isEmpty() || recipeList.isEmpty()) {
@@ -177,7 +229,6 @@ public class RecipeService extends ServiceManager<Recipe, String> {
     public List<Recipe> searchRecipeWithIngredientsName(GetIngredientsName dto) {
         List<Recipe> recipeList = recipeRepository.findAll();
         Set<Recipe> addList = new HashSet<>();
-
         if (dto.getIngredientsName().isEmpty()) {
             return recipeList;
         }
@@ -195,8 +246,9 @@ public class RecipeService extends ServiceManager<Recipe, String> {
     }
 
     //Kaloriye göre sıralama
+    @Cacheable(value = "order-by-calories")
     public List<Recipe> orderByRecipeWithCalories() {
-        List<Recipe> recipes = recipeRepository.findAll();
+        List<Recipe> recipes = findAll();
         Comparator<Recipe> recipeComparator = Comparator.comparing(recipe -> recipe.getNutritionalValue().getCalorie());
         Collections.sort(recipes, recipeComparator);
         return recipes;

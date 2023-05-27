@@ -1,4 +1,4 @@
-package com.emre.config;
+package com.emre.config.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
