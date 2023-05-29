@@ -54,12 +54,38 @@ tarifleri puanlayabildiği, puanını değiştirebildiği ve puanı silebildiği
 <font color ="E8F6EF"><u>Yorum Ekleme</u></font></br>
 ![Comment Add](SwaggerScreenShot/commentservice/comment-add.png)</br></br>
 <font color ="E8F6EF"><u>Yorum Güncelleme</u></font></br>
-![Comment Add](SwaggerScreenShot/commentservice/comment-update.png)</br></br>
+![Comment Update](SwaggerScreenShot/commentservice/comment-update.png)</br></br>
 <font color ="E8F6EF"><u>Yorum Silme</u></font></br>
-![Comment Add](SwaggerScreenShot/commentservice/comment-delete.png)</br></br>
+![Comment Delete](SwaggerScreenShot/commentservice/comment-delete.png)</br></br>
 <font color ="E8F6EF"><u>Puan Ekleme</u></font></br>
-![Comment Add](SwaggerScreenShot/pointservice/point-add.png)</br></br>
+![Point Add](SwaggerScreenShot/pointservice/point-add.png)</br></br>
 <font color ="E8F6EF"><u>Puan Güncelleme</u></font></br>
-![Comment Add](SwaggerScreenShot/pointservice/point-update.png)</br></br>
+![Point Update](SwaggerScreenShot/pointservice/point-update.png)</br></br>
 <font color ="E8F6EF"><u>Puan Silme</u></font></br>
-![Comment Add](SwaggerScreenShot/pointservice/point-delete.png)</br></br>
+![Point Delete](SwaggerScreenShot/pointservice/point-delete.png)</br></br>
+
+## <font color = "#FFE194"><u> Category Service </u></font>
+- Yanlızca adminlerin işlem yapabildiği, tarifler için kategori işlemlerinin yapılabildiği servistir.
+</br>
+
+<font color ="E8F6EF"><u>Kategori Ekleme</u></font></br>
+![Category Add](SwaggerScreenShot/categoryservice/category-save.png)</br></br>
+<font color ="E8F6EF"><u>Kategori Silme</u></font></br>
+![Category Delete](SwaggerScreenShot/categoryservice/category-delete.png)</br></br>
+
+## <font color = "#FFE194"><u> Recipe Service </u></font>
+- Yanlızca adminlerin işlem yapabildiği, tarifler ekleyip silebildiği ve güncelleyebildiği servistir.
+</br>
+
+<font color ="E8F6EF"><u>Tarif Ekleme</u></font></br>
+![Recipe Add](SwaggerScreenShot/recipeservice/recipe-save.png)</br></br>
+<font color ="E8F6EF"><u>Tarif Güncelleme</u></font></br>
+![Recipe Update](SwaggerScreenShot/recipeservice/recipe-update.png)</br></br>
+<font color ="E8F6EF"><u>Tarifleri Kategoriye göre sıralama</u></font></br>
+![Recipe Order By Calories](SwaggerScreenShot/recipeservice/recipe-orderby-calories.png)</br></br>
+<font color ="E8F6EF"><u>Tarifleri Kategorilerine göre bulme</u></font></br>
+![Recipe Search With Category](SwaggerScreenShot/recipeservice/recipe-search-recipe-withcategory.png)</br></br>
+<font color ="E8F6EF"><u>Tarifleri içeriklerine göre bulma</u></font></br>
+![Recipe Search With Ingredients Name](SwaggerScreenShot/recipeservice/recipe-search-recipewith-ingredientsname.png)</br></br>
+<font color ="E8F6EF"><u>Tarifleri isimlerine göre bulma</u></font></br>
+![Recipe Search With Food Name](SwaggerScreenShot/recipeservice/recipe-searchwith-foodname.png)</br></br>
